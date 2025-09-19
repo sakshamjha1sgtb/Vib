@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Vibru ka birthday 🥳</title>
 <style>
   :root{
@@ -16,19 +16,19 @@
     --radius:16px;
   }
   *{box-sizing:border-box}
-  html,body{height:100%}
+  html,body{height:100%; margin:0}
   body{
-    margin:0;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     background:
-      radial-gradient(1200px 600px at 10% 10%, rgba(255,107,107,0.06), transparent 8%),
-      radial-gradient(800px 400px at 90% 90%, rgba(255,209,102,0.04), transparent 6%),
+      radial-gradient(800px 400px at 10% 10%, rgba(255,107,107,0.06), transparent 8%),
+      radial-gradient(600px 300px at 90% 90%, rgba(255,209,102,0.04), transparent 6%),
       linear-gradient(180deg,var(--bg), #071225 140%);
     color:var(--text);
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:center;
-    padding:24px;
+    padding:16px;
+    overflow-x:hidden;
   }
 
   .container{
@@ -36,50 +36,56 @@
     max-width:980px;
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border-radius:var(--radius);
-    padding:28px;
+    padding:20px;
     display:grid;
-    grid-template-columns: 1fr 420px;
-    gap:20px;
-    box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+    grid-template-columns: 1fr;
+    gap:16px;
+    box-shadow: 0 8px 32px rgba(2,6,23,0.6);
     position:relative;
     overflow:hidden;
   }
 
-  @media (max-width:880px){
-    .container{grid-template-columns:1fr; padding:20px}
+  @media (min-width:880px){
+    .container{
+      grid-template-columns: 1fr 420px;
+      padding:28px;
+      gap:20px;
+    }
   }
 
   .left{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:16px;
     align-items:center;
     justify-content:center;
-    padding:26px;
+    padding:20px;
     text-align:center;
   }
 
   .title{
     font-weight:700;
-    font-size:clamp(26px,5.5vw,44px);
+    font-size:clamp(24px,6vw,38px);
     letter-spacing: -0.02em;
     margin:0;
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     justify-content:center;
+    line-height:1.2;
   }
 
   .subtitle{
     color:var(--muted);
     margin:0;
-    font-size:clamp(14px,2.6vw,16px);
+    font-size:clamp(13px,3vw,15px);
+    line-height:1.4;
   }
 
   .countdown{
-    margin-top:6px;
+    margin-top:8px;
     display:flex;
-    gap:12px;
+    gap:10px;
     align-items:center;
     justify-content:center;
     flex-wrap:wrap;
@@ -87,77 +93,81 @@
 
   .time-segment{
     background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    padding:12px 14px;
-    border-radius:12px;
-    min-width:78px;
+    padding:10px 12px;
+    border-radius:10px;
+    min-width:64px;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
   }
   .time-value{
     font-weight:700;
-    font-size:20px;
+    font-size:18px;
   }
   .time-label{
-    font-size:12px;
+    font-size:11px;
     color:var(--muted);
-    margin-top:4px;
+    margin-top:3px;
   }
 
   .right{
-    padding:18px;
+    padding:16px;
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
     align-items:center;
     justify-content:flex-start;
   }
 
   .image-placeholder{
     width:100%;
-    max-width:360px;
+    max-width:320px;
     aspect-ratio:3/4;
-    background:
-      linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:12px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:10px;
     border: 1px dashed rgba(255,255,255,0.04);
     display:flex;
     align-items:center;
     justify-content:center;
     color:var(--muted);
-    font-size:14px;
+    font-size:13px;
     position:relative;
     overflow:hidden;
   }
-  .image-placeholder img{
+  .image-placeholder iframe{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
+    border:none;
   }
 
   .upload-hint{
-    font-size:13px;
+    font-size:12px;
     color:var(--muted);
     text-align:center;
+    line-height:1.4;
   }
 
   .footer-cta{
     margin-top:auto;
     width:100%;
     display:flex;
-    gap:10px;
+    gap:8px;
     align-items:center;
     justify-content:center;
   }
 
   .btn{
-    padding:10px 14px;
-    border-radius:12px;
+    padding:10px 16px;
+    border-radius:10px;
     border: none;
     cursor:pointer;
     font-weight:600;
+    font-size:14px;
     color:#071225;
     background: linear-gradient(90deg,var(--accent),#ff8a8a);
-    box-shadow: 0 6px 18px rgba(255,107,107,0.12);
+    box-shadow: 0 4px 12px rgba(255,107,107,0.12);
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
   }
   .btn.secondary{
     background:transparent;
@@ -166,7 +176,6 @@
     border:1px solid rgba(255,255,255,0.03);
   }
 
-  /* FULLSCREEN confetti canvas overlay */
   #confetti-canvas{
     position:fixed;
     inset:0;
@@ -178,21 +187,21 @@
 
   .balloon{
     position:absolute;
-    width:96px;
-    height:128px;
+    width:80px;
+    height:106px;
     border-radius:48% 48% 52% 52%;
     background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
                 linear-gradient(180deg,#ff6b6b, #ff8a8a);
     transform:rotate(-12deg);
     opacity:0.12;
-    left:18px;
+    left:12px;
     top:8px;
     z-index:10;
     filter: blur(6px);
   }
   .balloon.alt{
     transform:rotate(8deg);
-    right:18px;
+    right:12px;
     left:auto;
     top:60%;
     background: linear-gradient(180deg,#ffd166,#ffecb3);
@@ -201,12 +210,25 @@
 
   @media (max-width:420px){
     .image-placeholder{max-width:100%}
-    .time-segment{min-width:60px;padding:10px}
+    .time-segment{min-width:56px;padding:8px}
+    .title{font-size:clamp(20px,5.5vw,32px)}
+    .subtitle{font-size:clamp(12px,2.8vw,14px)}
+    .btn{font-size:13px;padding:8px 14px}
+    .balloon{width:64px;height:85px}
+  }
+
+  @media (max-width:360px){
+    .container{padding:12px}
+    .left{padding:16px}
+    .right{padding:12px}
+    .countdown{gap:8px}
+    .time-segment{min-width:50px}
+    .time-value{font-size:16px}
+    .time-label{font-size:10px}
   }
 </style>
 </head>
 <body>
-<!-- Fullscreen confetti canvas (covers whole screen) -->
 <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
 <div class="container" role="main" aria-labelledby="main-title">
@@ -239,9 +261,7 @@
 
   <aside class="right" aria-label="Extras">
     <div class="image-placeholder" id="imagePlaceholder">
-<iframe src="https://drive.google.com/file/d/1jb2tjM2Ajy6Poy8fjhy-qP_s7x-SDB-I/preview" width="640" height="480" allow="autoplay"></iframe>
-      
-      <!-- Static placeholder only — no upload option -->
+      <iframe src="https://drive.google.com/file/d/1jb2tjM2Ajy6Poy8fjhy-qP_s7x-SDB-I/preview" allow="autoplay"></iframe>
     </div>
     <p class="upload-hint">Meri pyaari vibruu, I love you.</p>
 
@@ -310,20 +330,20 @@
       particles.push({
         x: rand(0, canvas.width),
         y: rand(-canvas.height, 0),
-        w: rand(6,14),
-        h: rand(8,18),
+        w: rand(5,10),
+        h: rand(7,14),
         angle: rand(0, Math.PI*2),
-        speedY: rand(1.5,5),
-        speedX: rand(-1.2,1.2),
+        speedY: rand(1.2,4),
+        speedX: rand(-1,1),
         color: colors[Math.floor(Math.random()*colors.length)],
-        rotationSpeed: rand(-0.1,0.1),
-        tilt: rand(-0.5,0.5),
+        rotationSpeed: rand(-0.08,0.08),
+        tilt: rand(-0.4,0.4),
         life: rand(4,8)
       });
     }
   }
 
-  makeConfetti(220);
+  makeConfetti(150); // Reduced for mobile performance
 
   const start = Date.now();
   let running = true;
@@ -339,16 +359,16 @@
 
     for(let p of particles){
       p.y += p.speedY;
-      p.x += p.speedX + Math.sin(p.angle)*0.6;
+      p.x += p.speedX + Math.sin(p.angle)*0.5;
       p.angle += p.rotationSpeed;
-      p.tilt += p.rotationSpeed*2;
+      p.tilt += p.rotationSpeed*1.5;
 
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.angle);
-      ctx.globalAlpha = 1 - Math.max(0, (elapsed-6)/1.5); // slight fade toward end
+      ctx.globalAlpha = 1 - Math.max(0, (elapsed-6)/1.5);
       ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w/2, -p.h/2 + p.tilt*6, p.w, p.h);
+      ctx.fillRect(-p.w/2, -p.h/2 + p.tilt*5, p.w, p.h);
       ctx.restore();
 
       if (p.y > canvas.height + 30){
