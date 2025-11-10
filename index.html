@@ -3,412 +3,305 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>Vibru ka birthday 🥳</title>
+<title>Vibru ka Birthday 🥳</title>
 <style>
-  :root{
-    --bg:#0f1724;
-    --card:#0b1220;
-    --accent:#ff6b6b;
-    --accent2:#ffd166;
-    --glass: rgba(255,255,255,0.06);
-    --text:#e6eef8;
+  :root {
+    --bg: #0f1724;
+    --accent: #ff6b6b;
+    --text: #e6eef8;
     --muted: rgba(230,238,248,0.7);
-    --radius:16px;
+    --radius: 16px;
   }
   *{box-sizing:border-box}
-  html,body{height:100%; margin:0}
+  html,body{height:100%;margin:0}
   body{
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:
-      radial-gradient(800px 400px at 10% 10%, rgba(255,107,107,0.06), transparent 8%),
-      radial-gradient(600px 300px at 90% 90%, rgba(255,209,102,0.04), transparent 6%),
-      linear-gradient(180deg,var(--bg), #071225 140%);
+    font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: linear-gradient(180deg,var(--bg), #071225 140%);
     color:var(--text);
     display:flex;
-    align-items:flex-start;
     justify-content:center;
+    align-items:flex-start;
     padding:16px;
-    overflow-x:hidden;
+    overflow:hidden;
   }
 
   .container{
     width:100%;
     max-width:980px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border-radius:var(--radius);
     padding:20px;
     display:grid;
-    grid-template-columns: 1fr;
-    gap:16px;
-    box-shadow: 0 8px 32px rgba(2,6,23,0.6);
+    grid-template-columns:1fr 420px;
+    gap:20px;
+    background: rgba(255,255,255,0.02);
     position:relative;
-    overflow:hidden;
   }
 
-  @media (min-width:880px){
-    .container{
-      grid-template-columns: 1fr 420px;
-      padding:28px;
-      gap:20px;
-    }
-  }
+  .left{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .title{font-size:clamp(24px,6vw,38px);font-weight:700}
+  .subtitle{color:var(--muted);font-size:clamp(13px,3vw,15px)}
+  .countdown{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .time-segment{background:rgba(255,255,255,0.05);padding:10px 12px;border-radius:10px;min-width:64px}
+  .time-value{font-weight:700;font-size:18px}
+  .time-label{font-size:11px;color:var(--muted)}
 
-  .left{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    text-align:center;
-  }
+  .right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .image-placeholder iframe{width:100%;height:300px;border:none;border-radius:10px}
+  .upload-hint{color:var(--muted);font-size:12px;text-align:center}
 
-  .title{
-    font-weight:700;
-    font-size:clamp(24px,6vw,38px);
-    letter-spacing: -0.02em;
-    margin:0;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    justify-content:center;
-    line-height:1.2;
-  }
-
-  .subtitle{
-    color:var(--muted);
-    margin:0;
-    font-size:clamp(13px,3vw,15px);
-    line-height:1.4;
-  }
-
-  .countdown{
-    margin-top:8px;
-    display:flex;
-    gap:10px;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-
-  .time-segment{
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    padding:10px 12px;
-    border-radius:10px;
-    min-width:64px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-  }
-  .time-value{
-    font-weight:700;
-    font-size:18px;
-  }
-  .time-label{
-    font-size:11px;
-    color:var(--muted);
-    margin-top:3px;
-  }
-
-  .right{
-    padding:16px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    align-items:center;
-    justify-content:flex-start;
-  }
-
-  .image-placeholder{
-    width:100%;
-    max-width:320px;
-    aspect-ratio:3/4;
-    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:10px;
-    border: 1px dashed rgba(255,255,255,0.04);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--muted);
-    font-size:13px;
-    position:relative;
-    overflow:hidden;
-  }
-  .image-placeholder iframe{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    border:none;
-  }
-
-  .upload-hint{
-    font-size:12px;
-    color:var(--muted);
-    text-align:center;
-    line-height:1.4;
-  }
-
-  .footer-cta{
-    margin-top:auto;
-    width:100%;
-    display:flex;
-    gap:8px;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .btn{
-    padding:10px 16px;
-    border-radius:10px;
-    border: none;
-    cursor:pointer;
-    font-weight:600;
-    font-size:14px;
-    color:#071225;
-    background: linear-gradient(90deg,var(--accent),#ff8a8a);
-    box-shadow: 0 4px 12px rgba(255,107,107,0.12);
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-  }
-  .btn.secondary{
-    background:transparent;
-    color:var(--muted);
-    box-shadow:none;
-    border:1px solid rgba(255,255,255,0.03);
-  }
-
-  #confetti-canvas{
-    position:fixed;
-    inset:0;
-    width:100vw;
-    height:100vh;
-    pointer-events:none;
-    z-index:9999;
-  }
-
-  .balloon{
+  /* Floating happy text (covers whole viewport) */
+  #happyText{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+  .happy{
     position:absolute;
-    width:80px;
-    height:106px;
-    border-radius:48% 48% 52% 52%;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
-                linear-gradient(180deg,#ff6b6b, #ff8a8a);
-    transform:rotate(-12deg);
-    opacity:0.12;
-    left:12px;
-    top:8px;
-    z-index:10;
-    filter: blur(6px);
-  }
-  .balloon.alt{
-    transform:rotate(8deg);
-    right:12px;
-    left:auto;
-    top:60%;
-    background: linear-gradient(180deg,#ffd166,#ffecb3);
-    opacity:0.08;
+    font-size:3em;
+    font-weight:800;
+    white-space:nowrap;
+    animation-timing-function:linear;
+    text-shadow:0 6px 18px rgba(0,0,0,0.5);
   }
 
-  @media (max-width:420px){
-    .image-placeholder{max-width:100%}
-    .time-segment{min-width:56px;padding:8px}
-    .title{font-size:clamp(20px,5.5vw,32px)}
-    .subtitle{font-size:clamp(12px,2.8vw,14px)}
-    .btn{font-size:13px;padding:8px 14px}
-    .balloon{width:64px;height:85px}
+  @keyframes floatUp {
+    0%{transform:translateY(100vh) scale(1);opacity:1}
+    100%{transform:translateY(-20vh) scale(1.2);opacity:0}
   }
 
-  @media (max-width:360px){
-    .container{padding:12px}
-    .left{padding:16px}
-    .right{padding:12px}
-    .countdown{gap:8px}
-    .time-segment{min-width:50px}
-    .time-value{font-size:16px}
-    .time-label{font-size:10px}
+  /* Big gift button */
+  #openGiftBtn{
+    display:none;
+    padding:18px 36px;
+    font-size:1.6rem;
+    border-radius:18px;
+    border:none;
+    background:linear-gradient(90deg,var(--accent),#ff8a8a);
+    color:#071225;
+    cursor:pointer;
+    z-index:100;
+    box-shadow: 0 8px 30px rgba(255,107,107,0.18);
+  }
+
+  @media (max-width:880px){
+    .container{grid-template-columns:1fr;align-items:center}
+    .image-placeholder iframe{height:220px}
   }
 </style>
 </head>
 <body>
-<canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-<div class="container" role="main" aria-labelledby="main-title">
-  <div class="balloon" aria-hidden="true"></div>
-  <div class="balloon alt" aria-hidden="true"></div>
+<div id="happyText" aria-hidden="true"></div>
 
+<div class="container" role="main" aria-labelledby="mainTitle">
   <section class="left">
-    <h1 id="main-title" class="title">Vibru ka birthday <span aria-hidden="true">🥳🥳🎊</span></h1>
-    <p class="subtitle">Counting down to the big day —Love you soo muchhhhhh </p>
+    <h1 id="mainTitle" class="title">Vibru ka Birthday 🥳🎊</h1>
+    <p class="subtitle"> Vibru gupluuu bungu — love you so much 💖</p>
 
-    <div class="countdown" aria-live="polite" aria-atomic="true">
-      <div class="time-segment" title="days">
-        <div id="days" class="time-value">0</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div class="time-segment" title="hours">
-        <div id="hours" class="time-value">0</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div class="time-segment" title="minutes">
-        <div id="minutes" class="time-value">0</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div class="time-segment" title="seconds">
-        <div id="seconds" class="time-value">0</div>
-        <div class="time-label">Seconds</div>
-      </div>
+    <div class="countdown" id="countdownBlock" aria-live="polite" aria-atomic="true">
+      <div class="time-segment"><div id="days" class="time-value">0</div><div class="time-label">Days</div></div>
+      <div class="time-segment"><div id="hours" class="time-value">00</div><div class="time-label">Hours</div></div>
+      <div class="time-segment"><div id="minutes" class="time-value">00</div><div class="time-label">Minutes</div></div>
+      <div class="time-segment"><div id="seconds" class="time-value">00</div><div class="time-label">Seconds</div></div>
     </div>
+
+    <button id="openGiftBtn" aria-hidden="true">🎁 Open Your Gift</button>
   </section>
 
   <aside class="right" aria-label="Extras">
-    <div class="image-placeholder" id="imagePlaceholder">
-    <!---  <iframe src="https://drive.google.com/file/d/1jb2tjM2Ajy6Poy8fjhy-qP_s7x-SDB-I/preview" width="640" height="480" allow="autoplay"></iframe> -->
-      <iframe src="https://drive.google.com/file/d/1k5r5C6isaBs6Vr54L8csUxuFER95yROg/preview" width="640" height="480" allow="autoplay"></iframe>
+    <div class="image-placeholder" aria-hidden="true">
+      <!-- keep your iframe preview if you want -->
+      <iframe src="https://drive.google.com/file/d/1k5r5C6isaBs6Vr54L8csUxuFER95yROg/preview" allow="autoplay"></iframe>
     </div>
-    <p class="upload-hint">Meri pyaari vibruu, I love you.</p>
-
-    <div class="footer-cta">
-      <button class="btn" id="shareBtn">Share</button>
-    </div>
+    <p class="upload-hint">Meri pyaari Vibruu, I love you.</p>
   </aside>
 </div>
 
+<audio id="bgMusic" src="happy.mp3" loop preload="auto"></audio>
+
 <script>
-/* Countdown to next November 11 (local date) */
+/*
+  Behavior:
+   - Target moment = 10 Nov 2025 23:59:00 (local time)
+   - If now >= target when page loads -> immediately start birthday mode (music + endless happy text + big button)
+   - Else show countdown until target, then switch.
+   - Floating text runs forever once birthday mode starts.
+   - Clicking "Open Your Gift" plays bdday_vib.mp4 in fullscreen (user gesture allows fullscreen).
+*/
+
 (function(){
-  const daysEl = document.getElementById('days');
-  const hoursEl = document.getElementById('hours');
-  const minsEl = document.getElementById('minutes');
-  const secsEl = document.getElementById('seconds');
+  const DAYS = document.getElementById('days');
+  const HOURS = document.getElementById('hours');
+  const MINUTES = document.getElementById('minutes');
+  const SECONDS = document.getElementById('seconds');
+  const countdownBlock = document.getElementById('countdownBlock');
+  const happyTextContainer = document.getElementById('happyText');
+  const openGiftBtn = document.getElementById('openGiftBtn');
+  const bgMusic = document.getElementById('bgMusic');
 
-  function getNextNov11(){
-    const now = new Date();
-    const year = now.getFullYear();
-    let target = new Date(year, 10, 11, 0, 0, 0);
-    if (target <= now) target = new Date(year+1, 10, 11, 0, 0, 0);
-    return target;
+  // Target: 10 November 2025 23:59:00 local time
+  const target = new Date(2025, 10, 10, 14, 07, 0, 0); // monthIndex 10 => November
+
+  let countdownInterval = null;
+  let floatingInterval = null;
+  let birthdayStarted = false;
+
+  function startCountdown(){
+    updateCountdown(); // immediate update
+    countdownInterval = setInterval(updateCountdown, 1000);
   }
-
-  let target = getNextNov11();
 
   function updateCountdown(){
     const now = new Date();
-    let diff = target - now;
-    if (diff < 0) diff = 0;
-    const s = Math.floor(diff/1000);
-    const days = Math.floor(s / (3600*24));
-    const hours = Math.floor((s % (3600*24)) / 3600);
-    const minutes = Math.floor((s % 3600) / 60);
-    const seconds = s % 60;
-
-    daysEl.textContent = String(days);
-    hoursEl.textContent = String(hours).padStart(2,'0');
-    minsEl.textContent = String(minutes).padStart(2,'0');
-    secsEl.textContent = String(seconds).padStart(2,'0');
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-})();
-
-/* Fullscreen confetti for first ~7 seconds */
-(function(){
-  const canvas = document.getElementById('confetti-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const colors = ['#ff6b6b','#ffd166','#6bf0ff','#9b8cff','#fff08a','#8affc1'];
-  const particles = [];
-  function rand(min,max){ return Math.random()*(max-min)+min; }
-
-  function makeConfetti(count){
-    for(let i=0;i<count;i++){
-      particles.push({
-        x: rand(0, canvas.width),
-        y: rand(-canvas.height, 0),
-        w: rand(5,10),
-        h: rand(7,14),
-        angle: rand(0, Math.PI*2),
-        speedY: rand(1.2,4),
-        speedX: rand(-1,1),
-        color: colors[Math.floor(Math.random()*colors.length)],
-        rotationSpeed: rand(-0.08,0.08),
-        tilt: rand(-0.4,0.4),
-        life: rand(4,8)
-      });
-    }
-  }
-
-  makeConfetti(150); // Reduced for mobile performance
-
-  const start = Date.now();
-  let running = true;
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    const elapsed = (Date.now() - start)/1000;
-    if (elapsed > 20.5) {
-      running = false;
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      canvas.style.display = 'none';
+    const diff = target - now;
+    if (diff <= 0){
+      // target reached or passed -> start birthday mode
+      clearInterval(countdownInterval);
+      beginBirthdayMode();
       return;
     }
-
-    for(let p of particles){
-      p.y += p.speedY;
-      p.x += p.speedX + Math.sin(p.angle)*0.5;
-      p.angle += p.rotationSpeed;
-      p.tilt += p.rotationSpeed*1.5;
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.angle);
-      ctx.globalAlpha = 1 - Math.max(0, (elapsed-19)/1.5);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w/2, -p.h/2 + p.tilt*5, p.w, p.h);
-      ctx.restore();
-
-      if (p.y > canvas.height + 30){
-        if (elapsed < 20) {
-          p.y = rand(-100, -10);
-          p.x = rand(0, canvas.width);
-        } else {
-          p.y = canvas.height + 200;
-        }
-      }
-    }
-
-    if (running) requestAnimationFrame(draw);
+    const s = Math.floor(diff / 1000);
+    const dRem = Math.floor(s / 86400);
+    const hRem = Math.floor((s % 86400) / 3600);
+    const mRem = Math.floor((s % 3600) / 60);
+    const secRem = s % 60;
+    DAYS.textContent = String(dRem);
+    HOURS.textContent = String(hRem).padStart(2,'0');
+    MINUTES.textContent = String(mRem).padStart(2,'0');
+    SECONDS.textContent = String(secRem).padStart(2,'0');
   }
 
-  requestAnimationFrame(draw);
-})();
+  function beginBirthdayMode(){
+    if (birthdayStarted) return;
+    birthdayStarted = true;
 
-/* Share button */
-(function(){
-  const btn = document.getElementById('shareBtn');
-  btn.addEventListener('click', async ()=>{
-    const text = 'Vibru ka birthday 🥳 — check this countdown!';
-    const url = location.href;
-    if (navigator.share){
-      try { await navigator.share({title:'Vibru ka birthday', text, url}); } catch(e) {}
-    } else if (navigator.clipboard){
-      try { await navigator.clipboard.writeText(text + ' ' + url); alert('Link copied to clipboard.'); } catch(e){ prompt('Copy this link:', url); }
-    } else {
-      prompt('Share this link:', url);
-    }
+    // hide countdown
+    countdownBlock.style.display = 'none';
+
+    // attempt to play music (may be blocked until user gesture)
+    bgMusic.play().catch(()=> {
+      // silently fail; will start once user clicks openGiftBtn or anywhere they interact
+      console.debug('Autoplay blocked; waiting for user gesture to start audio.');
+    });
+
+    // show gift button
+    openGiftBtn.style.display = 'inline-block';
+    openGiftBtn.setAttribute('aria-hidden','false');
+
+    // start endless floating text (forever)
+    startFloatingText();
+
+    // bonus: clicking anywhere also tries to start music (pleasant UX on mobile)
+    document.addEventListener('click', ensureMusicPlaying, { once: true });
+  }
+
+  function ensureMusicPlaying(){
+    bgMusic.play().catch(()=>{}); // ignore
+  }
+
+  function startFloatingText(){
+    const colors = ['#ff4081','#00e5ff','#76ff03','#ffeb3b','#ff9100','#d500f9','#8affc1','#ffd166'];
+    // Immediately create a few for density
+    for(let i=0;i<6;i++) spawnHappySpan();
+    // keep spawning new ones forever
+    floatingInterval = setInterval(spawnHappySpan, 350);
+  }
+
+  function spawnHappySpan(){
+    const span = document.createElement('span');
+    span.className = 'happy';
+    span.textContent = randomHappyText();
+    const left = Math.random() * 90; // percent
+    span.style.left = left + '%';
+    span.style.color = randomColor();
+    const duration = 6 + Math.random() * 6; // 6-12s
+    span.style.animation = `floatUp ${duration}s linear forwards`;
+    // small horizontal drift using transform translateX via inline style
+    const drift = (Math.random()-0.5) * 30; // -15..+15 vw
+    span.style.transform = `translateX(${drift}vw)`;
+    // vertical start offset (so elements don't all start strictly off-screen bottom)
+   
+
+    happyTextContainer.appendChild(span);
+
+    // remove after animation completes (duration + small buffer)
+    setTimeout(()=> {
+      span.remove();
+    }, (duration + 0.3) * 1000);
+  }
+
+  function randomColor(){
+    const palette = ['#ff4081','#00e5ff','#76ff03','#ffeb3b','#ff9100','#d500f9','#8affc1','#ffd166'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  }
+
+  function randomHappyText(){
+    const variants = [
+      '🎉 Happy Birthday Vibruu! 🎉',
+      '✨ Happy Birthday!!! ✨',
+      '🎂 Vibruu — Many happy returns! 🎂',
+      '💖 Happy Birthday Vibruu! 💖',
+      '🥳 Love you Vibruu! 🥳'
+    ];
+    return variants[Math.floor(Math.random()*variants.length)];
+  }
+
+  // Open present button behavior: play video in fullscreen
+  openGiftBtn.addEventListener('click', function onClick(evt){
+    // start music if not playing yet (user gesture exists now)
+    bgMusic.play().catch(()=>{});
+    playVideoFullscreen('bdday_vib.mp4');
   });
+
+  function playVideoFullscreen(src){
+    // Create video element
+    const video = document.createElement('video');
+    video.src = src;
+    video.autoplay = true;
+    video.controls = false;
+    video.playsInline = true;
+    video.loop = false;
+    video.style.top = '0';
+    video.style.left = '0';
+    video.setAttribute('aria-label','Birthday video');
+
+    // Append and play
+    document.body.appendChild(video);
+
+    // request fullscreen on the video element — this must be called in response to user gesture (we are)
+    const goFull = () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen().catch(()=>{ /* ignore if blocked */ });
+      } else if (video.webkitRequestFullscreen) { // Safari
+        video.webkitRequestFullscreen();
+      }
+    };
+
+    // Many browsers allow requestFullscreen on user gesture; call it and then play.
+    try { goFull(); } catch(e){ /* swallow */ }
+
+    // Ensure playback (some browsers may pause until fullscreen)
+    video.play().catch(()=>{});
+
+    // Remove video when it ends or user exits
+    const cleanup = () => { try{ video.pause(); }catch(e){}; if(video.parentNode) video.parentNode.removeChild(video); };
+    video.addEventListener('ended', cleanup);
+    // If user presses ESC to exit fullscreen, keep video's event to remove when ended
+    document.addEventListener('fullscreenchange', function fsHandler(){
+      if (!document.fullscreenElement) {
+        // not in fullscreen anymore — keep playing or optionally remove; we will keep playing but allow user to close via video controls if wanted
+        // We won't force remove here to avoid abruptness.
+        document.removeEventListener('fullscreenchange', fsHandler);
+      }
+    });
+  }
+
+  // Init: if target is already passed, begin birthday mode immediately; else run countdown
+  const now = new Date();
+  if (now >= target) {
+    beginBirthdayMode();
+  } else {
+    startCountdown();
+  }
+
 })();
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
