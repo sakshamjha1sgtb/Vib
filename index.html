@@ -249,8 +249,8 @@
     playVideoFullscreen('bdday_vib.mp4');
   });
 
-  function playVideoFullscreen(src){
-    // Create video element
+function playVideoFullscreen(src) {
+  // Create video element
     const video = document.createElement('video');
     video.src = src;
     video.autoplay = true;
@@ -261,38 +261,74 @@
     video.style.left = '0';
     video.setAttribute('aria-label','Birthday video');
 
-    // Append and play
-    document.body.appendChild(video);
 
-    // request fullscreen on the video element — this must be called in response to user gesture (we are)
-    const goFull = () => {
-      if (video.requestFullscreen) {
-        video.requestFullscreen().catch(()=>{ /* ignore if blocked */ });
-      } else if (video.webkitRequestFullscreen) { // Safari
-        video.webkitRequestFullscreen();
-      }
-    };
+  // Append and play
+  document.body.appendChild(video);
 
-    // Many browsers allow requestFullscreen on user gesture; call it and then play.
-    try { goFull(); } catch(e){ /* swallow */ }
+  // Function to cleanly remove video and exit fullscreen
+  function stopAndRemoveVideo() {
+    try { video.pause(); } catch (e) {}
+    if (video.parentNode) video.parentNode.removeChild(video);
 
-    // Ensure playback (some browsers may pause until fullscreen)
-    video.play().catch(()=>{});
+    // Exit fullscreen if still in it
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.webkitFullscreenElement) {
+      document.webkitExitFullscreen();
+    }
 
-    // Remove video when it ends or user exits
-    const cleanup = () => { try{ video.pause(); }catch(e){}; if(video.parentNode) video.parentNode.removeChild(video); };
-    video.addEventListener('ended', cleanup);
-    // If user presses ESC to exit fullscreen, keep video's event to remove when ended
-    document.addEventListener('fullscreenchange', function fsHandler(){
-      if (!document.fullscreenElement) {
-        // not in fullscreen anymore — keep playing or optionally remove; we will keep playing but allow user to close via video controls if wanted
-        // We won't force remove here to avoid abruptness.
-        document.removeEventListener('fullscreenchange', fsHandler);
-      }
-    });
+    // Remove event listeners
+    document.removeEventListener('keydown', escHandler);
+    document.removeEventListener('fullscreenchange', fsHandler);
+    window.removeEventListener('popstate', backHandler);
   }
 
-  // Init: if target is already passed, begin birthday mode immediately; else run countdown
+  // ESC key handler
+  function escHandler(e) {
+    if (e.key === 'Escape') {
+      stopAndRemoveVideo();
+    }
+  }
+
+  // Fullscreen exit handler (ESC or user manually exits)
+  function fsHandler() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      stopAndRemoveVideo();
+    }
+  }
+
+  // Handle mobile "Back" button (Android)
+  function backHandler() {
+    stopAndRemoveVideo();
+    history.pushState(null, document.title, location.href); // re-push to prevent leaving page
+  }
+
+  // Add listeners
+  document.addEventListener('keydown', escHandler);
+  document.addEventListener('fullscreenchange', fsHandler);
+  window.addEventListener('popstate', backHandler);
+
+  // push a history state so back button triggers popstate
+  history.pushState(null, document.title, location.href);
+
+  // request fullscreen (must be in response to user gesture)
+  const goFull = () => {
+    if (video.requestFullscreen) {
+      video.requestFullscreen().catch(() => {});
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
+  };
+  try { goFull(); } catch (e) {}
+
+  // Ensure playback
+  video.play().catch(() => {});
+
+  // When video ends, clean up
+  video.addEventListener('ended', stopAndRemoveVideo);
+}
+
+   // Init: if target is already passed, begin birthday mode immediately; else run countdown
   const now = new Date();
   if (now >= target) {
     beginBirthdayMode();
